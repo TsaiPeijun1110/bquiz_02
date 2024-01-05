@@ -28,11 +28,11 @@
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
+				<a class="blo" href="?do=admin">帳號管理</a>
 				<a class="blo" href="?do=po">分類網誌</a>
-				<a class="blo" href="?do=news">最新文章</a>
-				<a class="blo" href="?do=pop">人氣文章</a>
-				<a class="blo" href="?do=know">講座訊息</a>
-				<a class="blo" href="?do=que">問卷調查</a>
+				<a class="blo" href="?do=news">最新文章管理</a>
+				<a class="blo" href="?do=know">講座管理</a>
+				<a class="blo" href="?do=que">問卷管理</a>
 			</div>
 			<div class="hal" id="main">
 				<div>
@@ -46,25 +46,23 @@
 					<a href="?do=login">會員登入</a>
 					<?php
 						}else{
+						?>
+						歡迎,<?=$_SESSION['user'];?>
+						<button onclick="location.href='./api/logout.php'">登出</button>
+
+						<?php
+							if($_SESSION['user']=='admin'){
 							?>
-							歡迎,<?=$_SESSION['user'];?>
-							<button onclick="location.href='./api/logout.php'">登出</button>
-	
+							<button onclick="location.href='back.php'">管理</button>
 							<?php
-								if($_SESSION['user']=='admin'){
-								?>
-								<button onclick="location.href='back.php'">管理</button>
-								<?php
-							}
 						}
-							?>
-
-
+					}
+						?>
 					</span>
 					<div class="">
 							<?php
 							$do=$_GET['do']??'main';
-							$file="./front/{$do}.php";
+							$file="./back/{$do}.php";
 							if(file_exists($file)){
 								include $file;
 							}else{
