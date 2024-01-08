@@ -18,7 +18,8 @@
         ?>
             <tr>
                 <td>
-                    <div class='title' data-id="<?= $row['id']; ?>" style='cursor:pointer'><?= $row['title']; ?></div>
+                    <div class='title' data-id="<?= $row['id']; ?>" 
+                    style='cursor:pointer'><?= $row['title']; ?></div>
                 </td>
                 <td>
                     <div id="s<?= $row['id']; ?>"><?= mb_substr($row['news'], 0, 25); ?>...</div>
@@ -27,12 +28,12 @@
                 <td>
                     <?php
                     if (isset($_SESSION['user'])) {
-                        if ($Log->count(['news' => $row['id'], 'acc' => $_SESSION['user']]) > 0)
-                            echo "<a href=''>收回讚</a>";
+                        if ($Log->count(['news' => $row['id'], 'acc' => $_SESSION['user']]) > 0){
+                            echo "<a  href='Javascript:good({$row['id']})'>收回讚</a>";
                     } else {
-                        echo "<a href=''>讚</a>";
+                            echo "<a  href='Javascript:good({$row['id']})'>讚</a>";
                     }
-
+                }
                     ?>
                 </td>
             </tr>
@@ -62,4 +63,6 @@
         let id = $(e.target).data('id');
         $(`#s${id},#a${id}`).toggle();
     })
+
 </script>
+
