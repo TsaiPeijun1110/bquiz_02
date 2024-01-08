@@ -4,12 +4,19 @@
         <tr>
             <th width="30%">標題</th>
             <th width="50%">內容</th>
-            <td>人氣</td>
+            <th></th>
         </tr>
+        <?php
+        $rows=$News->all(['sh'=>1]);
+        foreach($rows as $row){
+        ?>
         <tr>
-            <td></td>
-            <td></td>
+            <td><?=$row['title'];?></td>
+            <td><?=mb_substr($row['news'],0,25);?>....</td>
             <td></td>
         </tr>
+        <?php
+        } 
+        ?>
     </table>
 </fieldset>
